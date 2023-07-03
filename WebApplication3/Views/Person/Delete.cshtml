@@ -1,0 +1,52 @@
+﻿@model Logica.Models.Person
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+ <div class="col-3">
+    <h4>Delete Persons</h4>
+    <hr />
+        @if (TempData["DeleteErrorMessage"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                <strong>@TempData["DeleteErrorMessage"]</strong>
+            </div>
+        }
+        @if (TempData["DeleteMessage"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                <strong>@TempData["DeleteMessage"]</strong>
+            </div>
+        }
+        <form asp-action="Delete" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @if(Model != null)
+            {
+                <div class="form-group">
+                    <label asp-for="ID" class="control-label"></label>
+                    <input asp-for="ID" class="form-control" value="@Model.ID" disabled />
+                    <span asp-validation-for="ID" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Name</label>
+                    <input value="@Model.Name" class="form-control" disabled />
+                </div>
+            }
+            else
+            {
+                <div class="form-group">
+                    <label asp-for="ID" class="control-label"></label>
+                    <input asp-for="ID" class="form-control" value="" />
+                    <span asp-validation-for="ID" class="text-danger"></span>
+                </div>
+            }
+            
+            <br />
+            <h5>WARNING - DO YOU WANT TO DELETE THIS PERSON?</h5>
+            <div class="form-group">
+                <input type="submit" value="Delete" class="btn btn-danger" />
+            </div>
+        </form>
+    </div>          
+

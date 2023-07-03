@@ -1,0 +1,60 @@
+﻿@model Logica.Models.Person
+
+
+@{
+    ViewData["Title"] = "Read";
+}
+
+
+<div class="col-3">
+    <h4>Find Persons</h4><p> Write ID or Name </p>
+    <hr />
+    @if (TempData["ReadErrorMessage"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+
+            <strong> @TempData["ReadErrorMessage"]</strong>
+        </div>
+    }
+    <form asp-action="Read" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="ID" class="control-label"></label>
+            <input asp-for="ID" class="form-control" value="" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Name" class="control-label">Name</label>
+            <input asp-for="Name" value="" class="form-control" />
+        </div>
+        <br />
+        <div class="form-group">
+            <input type="submit" value="Find" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+
+@if (ViewBag.listPersonToShow != null)
+{
+    <div class="col-3">
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">Person ID</th>
+                    <th scope="col">Person Name</th>
+                </tr>
+            </thead>
+            <tbody>
+    @foreach(var person in ViewBag.listPersonToShow)
+    {       
+                    <tr>
+                        <th scope="row">@person.ID</th>
+                        <td>@person.Name</td>
+                    </tr>                
+    }
+            </tbody>
+        </table>
+    </div>
+    
+}
+
+

@@ -1,0 +1,64 @@
+﻿
+@model Logica.Models.Person
+
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+
+    <div class="col-3">
+        <h4>Create Persons</h4>
+        <hr />
+        @if (TempData["AlertMessage"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+            <strong>@TempData["AlertMessage"]</strong>
+        </div>
+        }
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+            <strong>@TempData["ErrorMessage"]</strong>
+        </div>
+        }
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>            
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" value="" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        <br />
+        <div class="form-group">
+            <label asp-for="LastName" class="control-label"></label>
+            <input asp-for="LastName" value="" class="form-control" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+        <br />
+        <div class="form-group">
+            <label asp-for="Birthday" class="control-label"></label>
+            <input asp-for="Birthday" value="" type="date" class="form-control" />
+            <span asp-validation-for="Birthday" class="text-danger"></span>
+        </div>
+        <br/>
+        <div class="form-group">
+            <label asp-for="FavoriteColor" class="control-label"></label>
+            <input asp-for="FavoriteColor" value="" class="form-control" />
+            <span asp-validation-for="FavoriteColor" class="text-danger"></span>
+        </div>
+        <br />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

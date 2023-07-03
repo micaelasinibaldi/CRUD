@@ -1,0 +1,39 @@
+﻿@model Logica.Models.Person
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="col-6">
+    <h3>PERSONS</h3>
+    <hr />
+    <a type="button" href="/person/create" value="Create" class="btn btn-success"><i class="fa-solid fa-plus"></i> CREATE</a>
+    <a type="button" href="/person/read" value="Read" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i></a>
+    <br/>
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">First name</th>
+                <th scope="col">Last name</th>
+                <th scope="col">Details</th>
+                <th scope="col">Update</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 0; i < ViewBag.Dbase.ListPersons.Count; i++)
+            {
+                <tr>
+                    <th scope="row">@ViewBag.Dbase.ListPersons[i].ID</th>
+                    <td>@ViewBag.Dbase.ListPersons[i].Name</td>
+                    <td>@ViewBag.Dbase.ListPersons[i].LastName</td>
+                    <td><a type="button" asp-action="Details" asp-route-id="@ViewBag.Dbase.ListPersons[i].ID" value="" class="btn btn-secondary"><i class="fa-solid fa-circle-info"></i></a></td>
+                    <td> <a type="button" asp-action="Update" asp-route-id="@ViewBag.Dbase.ListPersons[i].ID" value="" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                    <td><a type="button" asp-action="Delete" asp-route-id="@ViewBag.Dbase.ListPersons[i].ID" value="" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a></td>                    
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

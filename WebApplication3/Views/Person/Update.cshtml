@@ -1,0 +1,95 @@
+﻿@model Logica.Models.Person
+
+@{
+    ViewData["Title"] = "Update";
+}
+
+
+<div class="col-9">
+    
+    <h4>Update Persons</h4>
+    <hr />
+    <div class="col-4">
+    @if (TempData["UpdateMessage"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <strong>@TempData["UpdateMessage"]</strong>
+        </div>
+    }
+    @if (TempData["UpdateErrorMessage"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <strong>@TempData["UpdateErrorMessage"]</strong>
+        </div>
+    }
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label class="control-label">Actual Name</label>
+                <input value="@Model.Name" class="form-control" disabled />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Actual Last Name</label>
+                <input value="@Model.LastName" class="form-control" disabled />
+            </div>
+            <div class="form-group">
+            <label class="control-label">Actual Birthday</label>
+                <input value="@Model.Birthday.ToShortDateString()" type="datetime" class="form-control" disabled />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Actual Favorite Colour</label>
+                <input value="@Model.FavoriteColor" class="form-control" disabled />
+            </div>
+        </div>
+        <div class="col">
+            <form asp-action="Update" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>                  
+             
+                <input asp-for="ID" type="hidden" value="@Model.ID"/>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label">New Name</label>
+                    <input asp-for="Name" id="NewName" value="" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastName" class="control-label">New LastName</label>
+                    <input asp-for="LastName" value="" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Birthday" class="control-label">New Birthday</label>
+                    <input asp-for="Birthday" value="" type="date" placeholder="dd-mm-yyyy" class="form-control" />
+                    <span asp-validation-for="Birthday" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FavoriteColor" class="control-label">New Favorite Colour</label>
+                    <input asp-for="FavoriteColor" value="" class="form-control" />
+                    <span asp-validation-for="FavoriteColor" class="text-danger"></span>
+                </div>
+                <br/>
+                <div class="form-group">
+                    <input type="submit" value="Update" class="btn btn-warning" />
+                </div>
+            </form>
+        </div>
+    </div>    
+             
+</div>
+           
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+
+
+
+
+
+
+
+
+
+

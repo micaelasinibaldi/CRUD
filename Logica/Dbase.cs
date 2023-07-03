@@ -6,6 +6,7 @@ namespace Logica
 {
     public class Dbase : IDataBase
     {
+        //prbando
         public List<Person> ListPersons { get; }
         public Dbase()
         {
